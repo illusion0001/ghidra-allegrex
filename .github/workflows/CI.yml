@@ -34,7 +34,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew ghidraInstallThenPackage
-          ls -R *.zip
+          ls -R
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:

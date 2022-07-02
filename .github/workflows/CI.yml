@@ -21,6 +21,11 @@ jobs:
           fi
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Checkout pspdev/psp-ghidra-scripts
+        uses: actions/checkout@v3
+        with:
+          repository: 'pspdev/psp-ghidra-scripts'
+          path: 'psp-ghidra-scripts'
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
@@ -32,6 +37,7 @@ jobs:
           version: ${{ steps.ghidra_version.outputs.full }}
       - name: Build Extension
         run: |
+          cp -R psp-ghidra-scripts/* Allegrex/ghidra_scripts
           chmod +x gradlew
           ./gradlew ghidraInstallThenPackage
           mv ./build/dist/Allegrex.zip Allegrex-${{ steps.ghidra_version.outputs.full }}.zip

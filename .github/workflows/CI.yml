@@ -34,10 +34,10 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew ghidraInstallThenPackage
-          ls -R
+          mv ./build/dist/Allegrex.zip Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip # artifacts
+          path: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
           if-no-files-found: warn
           retention-days: 7

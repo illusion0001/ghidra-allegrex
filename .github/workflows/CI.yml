@@ -40,7 +40,7 @@ jobs:
           cp -R psp-ghidra-scripts/* ghidra_scripts
           chmod +x gradlew
           ./gradlew ghidraInstallThenPackage
-          unzip ./build/dist/Allegrex.zip upload
+          unzip ./build/dist/Allegrex.zip -d upload
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:

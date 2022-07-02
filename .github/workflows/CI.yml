@@ -40,11 +40,11 @@ jobs:
           cp -R psp-ghidra-scripts/* ghidra_scripts
           chmod +x gradlew
           ./gradlew ghidraInstallThenPackage
-          unzip ./build/dist/Allegrex.zip
+          unzip ./build/dist/Allegrex.zip upload
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: Allegrex
+          path: upload
           name: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
           if-no-files-found: error
           retention-days: 7

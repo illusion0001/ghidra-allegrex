@@ -50,9 +50,6 @@ jobs:
           retention-days: 1
 
   push_release:
-    if: |
-      github.event_name == 'workflow_dispatch' &&
-      github.repository == 'kotcrab/ghidra-allegrex'
     needs: build_zip
     runs-on: ubuntu-latest
     steps:

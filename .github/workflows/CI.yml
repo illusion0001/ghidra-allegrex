@@ -42,7 +42,7 @@ jobs:
           ./gradlew ghidraInstallThenPackage
           #mv ./build/dist/Allegrex.zip Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
           unzip ./build/dist/Allegrex.zip
-          ls ./build/dist/Allegrex
+          ls build/dist/Allegrex
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:

@@ -50,9 +50,9 @@ jobs:
           retention-days: 7
 
   push_release:
-    if: |
-      github.event_name != 'pull_request' &&
-      github.repository == 'kotcrab/ghidra-allegrex'
+   # if: |
+     # github.event_name != 'pull_request' &&
+     # github.repository == 'kotcrab/ghidra-allegrex'
     needs: build_zip
     runs-on: ubuntu-latest
     steps:

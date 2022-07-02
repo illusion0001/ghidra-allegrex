@@ -51,7 +51,7 @@ jobs:
 
   push_release:
    # if: |
-     # github.event_name != 'pull_request' &&
+     # github.event_name == 'workflow_dispatch' &&
      # github.repository == 'kotcrab/ghidra-allegrex'
     needs: build_zip
     runs-on: ubuntu-latest
@@ -67,7 +67,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for i in release/*
-            do zip -r "${i%/}.zip" "$i"
+            do
+              zip -r "${i%/}.zip" "$i"
+              rm -rf "$i"
           done
           ls release
-          #gh release create 1.0${{ GITHUB.RUN_NUMBER }} artifact/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}
+          gh release create 1.0${{ GITHUB.RUN_NUMBER }} artifact/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}

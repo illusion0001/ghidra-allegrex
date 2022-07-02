@@ -47,7 +47,7 @@ jobs:
           path: upload
           name: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 1
 
   push_release:
    # if: |

@@ -33,10 +33,10 @@ jobs:
       - name: Build Extension
         run: |
           chmod +x gradlew
-          ./gradlew shadowJar
+          ./gradlew ghidraInstallThenPackage
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           path: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip # artifacts
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 7

@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: upload
-          name: Allegrex-${{ steps.ghidra_version.outputs.full }}.zip
+          name: Allegrex-${{ steps.ghidra_version.outputs.full }}
           if-no-files-found: error
           retention-days: 1
 

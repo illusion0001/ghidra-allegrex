@@ -65,4 +65,9 @@ jobs:
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: for i in release/*; do zip -r "${i%/}.zip" "$i"; done; ls -R release #gh release create 1.0${{ GITHUB.RUN_NUMBER }} artifact/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}
+        run: |
+          for i in release/*
+            do zip -r "${i%/}.zip" "$i"
+          done
+          ls release
+          #gh release create 1.0${{ GITHUB.RUN_NUMBER }} artifact/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}

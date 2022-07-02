@@ -12,6 +12,7 @@ jobs:
       - name: Set Ghidra version
         id: ghidra_version
         run: |
+          echo ${{ github.event_name }}
           if [ ${{ matrix.ghidra }} = latest ]; then
             ghidra_version=$(curl -fLsSo /dev/null -w %{url_effective} https://github.com/NationalSecurityAgency/ghidra/releases/latest |
              grep -oP '(?<=https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_).+(?=_build)')
@@ -75,4 +76,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release create 1.0${{ GITHUB.RUN_NUMBER }} release/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}
-

@@ -1,6 +1,6 @@
 name: Build Ghidra Processor Module
 
-on: [ push, pull_request, workflow_dispatch, tags ]
+on: [ push, pull_request, workflow_dispatch ]
 
 jobs:
   build_zip:

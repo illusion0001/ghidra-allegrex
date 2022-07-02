@@ -50,9 +50,9 @@ jobs:
           retention-days: 1
 
   push_release:
-   # if: |
-     # github.event_name == 'workflow_dispatch' &&
-     # github.repository == 'kotcrab/ghidra-allegrex'
+    if: |
+      github.event_name == 'workflow_dispatch' &&
+      github.repository == 'kotcrab/ghidra-allegrex'
     needs: build_zip
     runs-on: ubuntu-latest
     steps:
@@ -62,14 +62,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: release
-      - name: Create Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Prepare Release
         run: |
           for i in release/*
             do
               zip -r "${i%/}.zip" "$i"
               rm -rf "$i"
           done
-          ls release
-          gh release create 1.0${{ GITHUB.RUN_NUMBER }} release/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create 1.0${{ GITHUB.RUN_NUMBER }} release/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}

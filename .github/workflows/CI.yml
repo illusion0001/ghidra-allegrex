@@ -3,7 +3,7 @@ name: Build Ghidra Processor Module
 on:
   push:
     tags:
-  pull_requests:
+  pull_request:
   workflow_dispatch:
 
 jobs:

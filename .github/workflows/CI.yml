@@ -72,4 +72,4 @@ jobs:
               rm -rf "$i"
           done
           ls release
-          gh release create 1.0${{ GITHUB.RUN_NUMBER }} artifact/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}
+          gh release create 1.0${{ GITHUB.RUN_NUMBER }} release/*.zip --target ${{ GITHUB.SHA }} -t 1.0${{ GITHUB.RUN_NUMBER }}

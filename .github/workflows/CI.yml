@@ -1,6 +1,6 @@
 name: Build Ghidra Processor Module
 
-on: [ push, pull_request, workflow_dispatch ]
+on: [ push, pull_request, workflow_dispatch, tags ]
 
 jobs:
   build_zip:
@@ -47,9 +47,12 @@ jobs:
           path: upload
           name: Allegrex-${{ steps.ghidra_version.outputs.full }}
           if-no-files-found: error
-          retention-days: 2
+          retention-days: 1
 
   push_release:
+    if: |
+      github.event_name == 'tags' &&
+      github.repository == 'kotcrab/ghidra-allegrex'
     needs: build_zip
     runs-on: ubuntu-latest
     steps:
